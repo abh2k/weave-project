@@ -92,7 +92,7 @@ func validate(request *apiv1.SearchRequest) error {
 }
 
 func buildGithubQuery(searchTerm string, user string) string {
-	query := searchTerm
+	query := strings.TrimSpace(searchTerm)
 	if strings.TrimSpace(user) != "" {
 		query = searchTerm + " user:" + strings.TrimSpace(user)
 	}
