@@ -182,10 +182,9 @@ const file_weave_api_v1_github_proto_rawDesc = "" +
 	"\aresults\x18\x01 \x03(\v2\x14.weave.api.v1.ResultR\aresults\"7\n" +
 	"\x06Result\x12\x19\n" +
 	"\bfile_url\x18\x01 \x01(\tR\afileUrl\x12\x12\n" +
-	"\x04repo\x18\x02 \x01(\tR\x04repo2\xa0\x01\n" +
+	"\x04repo\x18\x02 \x01(\tR\x04repo2Z\n" +
 	"\x13GithubSearchService\x12C\n" +
-	"\x06Search\x12\x1b.weave.api.v1.SearchRequest\x1a\x1c.weave.api.v1.SearchResponse\x12D\n" +
-	"\aSuggest\x12\x1b.weave.api.v1.SearchRequest\x1a\x1c.weave.api.v1.SearchResponseB,Z*weave-project/gen/proto/weave/api/v1;apiv1b\x06proto3"
+	"\x06Search\x12\x1b.weave.api.v1.SearchRequest\x1a\x1c.weave.api.v1.SearchResponseB,Z*weave-project/gen/proto/weave/api/v1;apiv1b\x06proto3"
 
 var (
 	file_weave_api_v1_github_proto_rawDescOnce sync.Once
@@ -208,11 +207,9 @@ var file_weave_api_v1_github_proto_goTypes = []any{
 var file_weave_api_v1_github_proto_depIdxs = []int32{
 	2, // 0: weave.api.v1.SearchResponse.results:type_name -> weave.api.v1.Result
 	0, // 1: weave.api.v1.GithubSearchService.Search:input_type -> weave.api.v1.SearchRequest
-	0, // 2: weave.api.v1.GithubSearchService.Suggest:input_type -> weave.api.v1.SearchRequest
-	1, // 3: weave.api.v1.GithubSearchService.Search:output_type -> weave.api.v1.SearchResponse
-	1, // 4: weave.api.v1.GithubSearchService.Suggest:output_type -> weave.api.v1.SearchResponse
-	3, // [3:5] is the sub-list for method output_type
-	1, // [1:3] is the sub-list for method input_type
+	1, // 2: weave.api.v1.GithubSearchService.Search:output_type -> weave.api.v1.SearchResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name

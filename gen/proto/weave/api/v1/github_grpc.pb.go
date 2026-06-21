@@ -19,8 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	GithubSearchService_Search_FullMethodName  = "/weave.api.v1.GithubSearchService/Search"
-	GithubSearchService_Suggest_FullMethodName = "/weave.api.v1.GithubSearchService/Suggest"
+	GithubSearchService_Search_FullMethodName = "/weave.api.v1.GithubSearchService/Search"
 )
 
 // GithubSearchServiceClient is the client API for GithubSearchService service.
@@ -28,7 +27,6 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type GithubSearchServiceClient interface {
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
-	Suggest(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error)
 }
 
 type githubSearchServiceClient struct {
@@ -49,22 +47,11 @@ func (c *githubSearchServiceClient) Search(ctx context.Context, in *SearchReques
 	return out, nil
 }
 
-func (c *githubSearchServiceClient) Suggest(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*SearchResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchResponse)
-	err := c.cc.Invoke(ctx, GithubSearchService_Suggest_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // GithubSearchServiceServer is the server API for GithubSearchService service.
 // All implementations must embed UnimplementedGithubSearchServiceServer
 // for forward compatibility.
 type GithubSearchServiceServer interface {
 	Search(context.Context, *SearchRequest) (*SearchResponse, error)
-	Suggest(context.Context, *SearchRequest) (*SearchResponse, error)
 	mustEmbedUnimplementedGithubSearchServiceServer()
 }
 
@@ -77,9 +64,6 @@ type UnimplementedGithubSearchServiceServer struct{}
 
 func (UnimplementedGithubSearchServiceServer) Search(context.Context, *SearchRequest) (*SearchResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method Search not implemented")
-}
-func (UnimplementedGithubSearchServiceServer) Suggest(context.Context, *SearchRequest) (*SearchResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method Suggest not implemented")
 }
 func (UnimplementedGithubSearchServiceServer) mustEmbedUnimplementedGithubSearchServiceServer() {}
 func (UnimplementedGithubSearchServiceServer) testEmbeddedByValue()                             {}
@@ -120,24 +104,6 @@ func _GithubSearchService_Search_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GithubSearchService_Suggest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GithubSearchServiceServer).Suggest(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: GithubSearchService_Suggest_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GithubSearchServiceServer).Suggest(ctx, req.(*SearchRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // GithubSearchService_ServiceDesc is the grpc.ServiceDesc for GithubSearchService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -148,10 +114,6 @@ var GithubSearchService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Search",
 			Handler:    _GithubSearchService_Search_Handler,
-		},
-		{
-			MethodName: "Suggest",
-			Handler:    _GithubSearchService_Suggest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
